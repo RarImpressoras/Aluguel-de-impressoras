@@ -41,6 +41,21 @@
     .carousel-control-next-icon {
       filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(287deg) brightness(104%) contrast(104%);
     }
+
+    .img-com-sombra {
+      position: relative;
+    }
+
+    .img-com-sombra::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      bottom: -10px;
+      left: 0;
+      box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.5);
+      /* Adiciona uma sombra apenas na parte inferior */
+    }
   </style>
 
 </head>
@@ -65,7 +80,7 @@
           <li><a class="nav-link scrollto" href="#servicos">Beneficios</a></li>
           <li><a class="nav-link scrollto" href="#equipamentos">Equipamentos</a></li>
           <li><a class="nav-link scrollto" href="#depoimentos">Depoimentos</a></li>
-          <li><a class="getstarted scrollto" href="#contato">Contato</a></li>
+          <li><a class="getstarted scrollto" href="#contato">Alugue agora</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -99,11 +114,10 @@
 
   </section>
 
-  <!-- ======= Hero Section ======= -->
   <main id="main">
     <!-- ======= Sobre Us Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+    <section class="about">
+      <div id="about" class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Como funciona o aluguel de impressoras? </h2>
@@ -127,13 +141,97 @@
               impressoras vem sendo uma tendência no mundo corporativo, já que possibilita benefícios bastante
               atrativos.
             </p>
-            <a href="https://api.whatsapp.com/send?phone=551126414299&text=Contato%20pelo%20site"
-              class="btn-learn-more">Contate-nos</a>
           </div>
         </div>
 
       </div>
-    </section><!-- End Sobre Us Section -->
+      <div id="contato" class="container contact" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Faça seu orçamento</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Endereço:</h4>
+                <p>R. Zumbi, 31 - Vila Mesquita, São Paulo - SP, 03714-010</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>atendimento@rar.com.br</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Telefone</h4>
+                <p>+55 11 2641-4299</p>
+              </div>
+
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14634.440790467894!2d-46.5444947!3d-23.5105458!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5fbeffe6c87f%3A0x821a7f0769bd7ae2!2sRAR%20SOLU%C3%87%C3%95ES%20CORPORATIVAS!5e0!3m2!1spt-BR!2sbr!4v1685025590801!5m2!1spt-BR!2sbr"
+                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group">
+                  <label for="name">Nome</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Email profissional</label>
+                <input type="email" name="email" class="form-control" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Telefone para contato</label>
+                <input type="text" class="form-control" name="telefone" id="telefone" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Nome da empresa</label>
+                <input type="text" class="form-control" name="empresa" id="empresa" required>
+              </div>
+              <div class="text-center">
+                <button class="btn btn-primary" onclick="enviar()"
+                  style="font-size: 20px; padding: 10px 20px; font-weight: bold; ">Alugue agora</button>
+              </div>
+
+          </div>
+          </form>
+
+          <script>
+            // Abre o link do WhatsApp em uma nova janela
+            function enviar() {
+              var nome = document.getElementById("name").value;
+              var email = document.getElementById("email").value;
+              var telefone = document.getElementById("telefone").value;
+              var empresa = document.getElementById("empresa").value;
+
+              // Formatação da mensagem com os valores do objeto ordemServico
+              var mensagem = "Olá, meu nome é " + nome +
+                " gostaria de solicitar um orçamento para minha empresa " +
+                empresa;
+              // Link do WhatsApp com a mensagem formatada e o número de telefone
+              var linkWhatsapp = "https://wa.me/551126414299?text=" + mensagem;
+              window.open(linkWhatsapp, "_blank");
+            }
+          </script>
+        </div>
+
+      </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
 
 
     <!-- ======= servicos Section ======= -->
@@ -200,7 +298,7 @@
     </section>
 
 
-    <!-- ======= Clients Section ======= -->
+    <!-- ======= Marcas ======= -->
     <section id="clients" class="clients section-bg">
       <div class="container" data-aos="fade-up">
         <h3>Trabalhamos com as melhores marcas:</h3>
@@ -233,61 +331,82 @@
         </div>
 
       </div>
-    </section><!-- End Cliens Section -->
+    </section><!-- Marcas -->
 
 
 
-    <!-- ======= Depoimentos Section ======= -->
+    <!-- ======= Equipamentos ======= -->
     <section id="equipamentos" class="team ">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title section-p">
 
-          <h2 >Equipamentos</h2>
+          <h2>Equipamentos</h2>
           <p>Dispomos de uma ampla seleção de impressoras disponíveis para aluguel, atendendo às necessidades do seu
             negócio.</p>
         </div>
-
         <div class="row">
-
-
         </div>
-
-        <div class="p-4 p-md-5 mb-4 rounded text-bg-light">
+        <div class="p-4 p-md-5 mb-4 rounded text-bg-light border border-5">
           <div class="row">
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic">Impressoras Laser Monocromáticas</h1>
-              <p class="lead my-3">O destaque fica pelas impressionantes velocidades de impressão, permitindo que você
-                conclua suas tarefas
-                com rapidez e eficiência. Além disso, sua capacidade do toner, que é generosa, permitindo uma maior
-                quantidade de impressões antes da necessidade de substituição. Isso significa menos interrupções e
-                maior produtividade para o seu escritório.</p>
+              <p class="lead my-3">Se você busca uma solução de impressão eficiente, econômica e de qualidade
+                superior para seu negócio no setor de lojas, construção civil e varejo, as Impressoras Laser
+                Monocromáticas são a escolha
+                ideal. Conte conosco para fornecer essa poderosa impressora, auxiliando no crescimento e sucesso de sua
+                empresa.</p>
+              <div class="text-center"> <a
+                  href="https://api.whatsapp.com/send?phone=551126414299&text=Contato%20pelo%20site"> <button
+                    class="btn btn-primary">Quero está</button></a> <br><br> </div>
             </div>
             <div class="col-md-6 px-0">
-              <img src="assets/imgs/sp3710.png" alt="Descrição da imagem" class="float-md-end img-fluid">
+              <div class="text-center">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="d-flex justify-content-center">
+                      <img src="assets/imgs/sp3710.png" alt="Descrição da imagem" class="img-fluid">
+                    </div>
+                    <div class="text-center">
+                      <h4 class="font-weight-bold mt-3">Ricoh SP3710</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="p-4 p-md-5 mb-4 rounded text-bg-light">
+        <div class="p-4 p-md-5 mb-4 rounded text-bg-light  border border-5">
           <div class="row">
+
             <div class="col-md-6 px-0">
-              <img width="70%" src="assets/imgs/CanonColo.png" alt="Descrição da imagem"
-                class="float-md-start img-fluid">
+              <div class="text-center">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="d-flex justify-content-center">
+                      <img src="assets/imgs/CanonColo.png" alt="Descrição da imagem" class="img-fluid">
+                    </div>
+                    <div class="text-center">
+                      <h4 class="font-weight-bold mt-3">Canon C3826i</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic">Impressoras Laser Coloridas</h1>
-
               <p class="lead my-3">As impressoras laser coloridas são uma excelente escolha para empresas,
                 escritórios criativos e ambientes que exigem impressões coloridas de alta qualidade. Se você busca uma
                 impressora laser colorida confiável, de alta qualidade e velocidade para o seu ambiente de escritório ou
                 empresarial.</p>
+              <div class="text-center"> <a
+                  href="https://api.whatsapp.com/send?phone=551126414299&text=Contato%20pelo%20site"> <button
+                    class="btn btn-primary">Quero está</button></a> <br><br> </div>
             </div>
           </div>
         </div>
-
-
-        <div class="p-4 p-md-5 mb-4 rounded text-bg-light">
+        <div class="p-4 p-md-5 mb-4 rounded text-bg-light  border border-5">
           <div class="row">
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic">Impressoras Jato de Tinta</h1>
@@ -295,19 +414,42 @@
                 impressoras jato de tinta da Epson são uma excelente escolha. Combinando desempenho excepcional,
                 versatilidade e economia, elas atenderão às suas necessidades de impressão, seja para uso pessoal, em
                 escritórios domésticos ou em pequenas empresas.</p>
+
+              <div class="text-center"> <a
+                  href="https://api.whatsapp.com/send?phone=551126414299&text=Contato%20pelo%20site"> <button
+                    class="btn btn-primary">Quero está</button></a> </div>
             </div>
             <div class="col-md-6 px-0">
-              <img src="assets/imgs/JatodeTinta.png" width="80%" height="80%" alt="Descrição da imagem"
-                class="float-md-end img-fluid">
+              <div class="text-center">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="d-flex justify-content-center">
+                      <img src="assets/imgs/JatodeTinta.png" alt="Descrição da imagem" class="img-fluid">
+                    </div>
+                    <div class="text-center">
+                      <h4 class="font-weight-bold mt-3">Epson L3150</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="p-4 p-md-5 mb-4 rounded text-bg-light">
+        <div class="p-4 p-md-5 mb-4 rounded text-bg-light  border border-5">
           <div class="row">
             <div class="col-md-6 px-0">
-              <img src="assets/imgs/ImpressoraTemica.png" width="80%" height="80%" alt="Descrição da imagem"
-                class="float-md-start img-fluid">
+              <div class="text-center">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="d-flex justify-content-center">
+                      <img src="assets/imgs/ImpressoraTemica.png" alt="Descrição da imagem" class="img-fluid">
+                    </div>
+                    <div class="text-center">
+                      <h4 class="font-weight-bold mt-3">Elgin L42 PRO</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-md-6 px-0">
               <h1 class="display-4 fst-italic">Impressoras Termica</h1>
@@ -316,6 +458,10 @@
                 quando se trata de impressão de recibos, etiquetas e códigos de barras. Se você precisa de uma
                 impressora confiável e eficiente para imprimir recibos, etiquetas ou códigos de barras, as impressoras
                 térmicas são a escolha certa.</p>
+
+              <div class="text-center"> <a
+                  href="https://api.whatsapp.com/send?phone=551126414299&text=Contato%20pelo%20site"> <button
+                    class="btn btn-primary">Quero está</button></a> </div>
             </div>
           </div>
         </div>
@@ -335,10 +481,11 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="testimonial-item text-center">
-                    <img src="caminho/para/o/logo-da-empresa.png" alt="Logo da Empresa 1" class="img-fluid">
+                    <img src="assets/imgs/BelContabil.jfif" width="110px" height="110px" alt="BelContabil"
+                      class="img-fluid">
                     <blockquote class="blockquote">
-                      <p>"Relato da empresa 1."</p>
-                      <footer class="blockquote-footer">Nome do relator, <cite>Nome da empresa 1</cite></footer>
+                      <p>"Excelente empresa com ótimos profissionais"</p>
+                      <footer class="blockquote-footer">David Vieira, <cite>Bel organização Contabil</cite></footer>
                     </blockquote>
                   </div>
                 </div>
@@ -350,16 +497,16 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="testimonial-item text-center">
-                    <img src="caminho/para/o/logo-da-empresa.png" alt="Logo da Empresa 2" class="img-fluid">
+                    <img src="assets/imgs/goncaleimoveis-azul.png" width="110px" height="110px" alt="Gonçale Imoveis" class="img-fluid">
                     <blockquote class="blockquote">
-                      <p>"Relato da empresa 2."</p>
-                      <footer class="blockquote-footer">Nome do relator, <cite>Nome da empresa 2</cite></footer>
+                      <p>"Otimo atendimento, solucionou meus problemas"</p>
+                      <footer class="blockquote-footer">Leticia, <cite>Gonçale Imoveis</cite></footer>
                     </blockquote>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div><!--
           <div class="carousel-item">
             <div class="container">
               <div class="container">
@@ -376,7 +523,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
         <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -457,99 +604,6 @@
     </section>
     <!-- End Depoimentos Section -->
 
-
-
-    <!-- ======= Contato Section ======= -->
-    <section id="contato" class="contact ">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2 >Contato</h2>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Endereço:</h4>
-                <p>R. Zumbi, 31 - Vila Mesquita, São Paulo - SP, 03714-010</p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>atendimento@rar.com.br</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Telefone</h4>
-                <p>+55 11 2641-4299</p>
-              </div>
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14634.440790467894!2d-46.5444947!3d-23.5105458!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5fbeffe6c87f%3A0x821a7f0769bd7ae2!2sRAR%20SOLU%C3%87%C3%95ES%20CORPORATIVAS!5e0!3m2!1spt-BR!2sbr!4v1685025590801!5m2!1spt-BR!2sbr"
-                frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
-            </div>
-
-          </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Nome</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Email</label>
-                  <input type="email" class="form-control" type="email" name="email" id="email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Telefone</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Mensagem</label>
-                <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
-              </div>
-
-
-              <div class="text-center"><button class="btn btn-primary" onclick="enviar()">Solicitar orçamento</button>
-              </div>
-            </form>
-
-            <script>
-              // Abre o link do WhatsApp em uma nova janela
-              function enviar() {
-
-                var nome = document.getElementById("name").value;
-                var email = document.getElementById("email").value;
-                var sujestao = document.getElementById("subject").value;
-                var mensagem = document.getElementById("message").value;
-
-                // Formatação da mensagem com os valores do objeto ordemServico
-                var mensagem = "Olá, meu nome é%0A" +
-                  nome + " ; " +
-                  mensagem;
-                // Link do WhatsApp com a mensagem formatada e o número de telefone
-                var linkWhatsapp = "https://wa.me/551126414299?text=" + mensagem;
-                window.open(linkWhatsapp, "_blank");
-              }
-            </script>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-    <!-- Vendor JS Files -->
-
-
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -558,7 +612,6 @@
     <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
     <script src="js/index.js"></script>
 
 </body>
